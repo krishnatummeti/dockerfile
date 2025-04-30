@@ -7,7 +7,7 @@ LABEL ENV="DEV" \
     Project="Docker LABEL" \
     AWS="ec2 instance"
 
-EXPOSE 80
+EXPOSE 8080
 
 RUN dnf install nginx -y && dnf clean all
 
