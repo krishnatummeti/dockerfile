@@ -11,4 +11,4 @@ RUN mkdir /tmp/work_place
 WORKDIR /tmp/work_place
 RUN pwd
 RUN echo "this is dokcer" > /tmp/work_place/test.txt
-CMD [ "sleep" "1000s" ]
+CMD [ "sleep", "1000s" ]
