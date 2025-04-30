@@ -6,4 +6,5 @@ LABEL ENV="DEV" \
       Project="Docker LABEL" \
       AWS="ec2 instance"
 EXPOSE 80
-CMD [ "ping", "google.com" ]
+# CMD [ "ping", "google.com" ]
+ENTRYPOINT [ "ping", "google.com" ]
