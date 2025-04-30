@@ -2,11 +2,17 @@ FROM almalinux:9
 ENV MY_NAME="John Doe" \
     MY_DOG="Rex" \
     MY_CAT="fluffy" 
-    LABEL ENV="DEV" \
+
+LABEL ENV="DEV" \
     Project="Docker LABEL" \
     AWS="ec2 instance"
+
 EXPOSE 80
+
 RUN dnf install nginx -y && dnf clean all
-CMD ["nginx", "-g", "daemon off;"]
+
 RUN useradd krishnatummeti
+
 USER krishnatummeti
+
+CMD ["nginx", "-g", "daemon off;"]
