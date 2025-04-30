@@ -6,7 +6,7 @@ ENV MY_NAME="John Doe" \
     Project="Docker LABEL" \
     AWS="ec2 instance"
 EXPOSE 80
+RUN dnf install nginx -y && dnf clean all
+CMD ["nginx", "-g", "daemon off;"]
 RUN useradd krishnatummeti
 USER krishnatummeti
-RUN dnf install nginx -y
-CMD ["nginx", "-g", "daemon off;"]
