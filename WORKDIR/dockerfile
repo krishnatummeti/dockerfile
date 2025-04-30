@@ -1,0 +1,14 @@
+FROM almalinux:9
+ENV MY_NAME="John Doe" \
+    MY_DOG="Rex" \
+    MY_CAT="fluffy" 
+
+LABEL ENV="DEV" \
+    Project="Docker LABEL" \
+    AWS="ec2 instance"
+
+RUN mkdir /tmp/work_place
+WORKDIR /tmp/work_place
+RUN pwd
+RUN echo "this is dokcer" > /tmp/work_place/test.txt
+CMD [ "sleep" "1000s" ]
