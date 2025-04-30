@@ -9,10 +9,7 @@ LABEL ENV="DEV" \
 
 EXPOSE 8080
 
-RUN dnf install nginx -y && dnf clean all
-
 RUN useradd krishnatummeti
 
 USER krishnatummeti
 
-CMD ["nginx", "-g", "daemon off;"]
