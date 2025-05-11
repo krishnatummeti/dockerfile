@@ -5,10 +5,10 @@ app = Flask(__name__)
 
 def get_db_connection():
     connection = mysql.connector.connect(
-        host="mysql-db",  # Name of the MySQL container
+        host="mysql",  # ✅ Corrected from 'mysql-db'
         user="root",
-        password="example",  # Password set in Docker
-        database="test_db"  # Database created in MySQL
+        password="example",
+        database="test_db"
     )
     return connection
 
@@ -20,7 +20,6 @@ def hello_world():
     result = cursor.fetchone()
     connection.close()
     
-    # Render the index.html file and pass the 'message' variable
     return render_template('index.html', message=result[0])
 
 if __name__ == "__main__":
