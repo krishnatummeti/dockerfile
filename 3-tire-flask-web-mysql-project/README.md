@@ -18,29 +18,6 @@ It consists of three components, each running in its own Docker container, conne
 
 ---
 
-## Folder Structure
-
-root/
-│
-├── db/
-│ ├── Dockerfile
-│ └── init.sql # Initial database schema and sample data
-│
-├── backend/
-│ ├── Dockerfile
-│ ├── app.py # Flask app code
-│ ├── requirements.txt
-│
-├── frontend/
-│ ├── Dockerfile
-│ └── index.html # Simple frontend HTML page
-│
-└── README.md
-
-
-
----
-
 ## Step 1: Create Docker Network
 
 ```bash
