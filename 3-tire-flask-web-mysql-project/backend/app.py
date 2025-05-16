@@ -8,7 +8,7 @@ def submit():
     name = request.form['name']
     email = request.form['email']
     conn = mysql.connector.connect(
-        host='db',
+        host='mysql',
         user='root',
         password='root',
         database='appdb'
