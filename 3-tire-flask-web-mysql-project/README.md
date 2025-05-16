@@ -20,3 +20,42 @@ It consists of three components, each running in its own Docker container, conne
 
 ## Folder Structure
 
+root/
+│
+├── db/
+│ ├── Dockerfile
+│ └── init.sql # Initial database schema and sample data
+│
+├── backend/
+│ ├── Dockerfile
+│ ├── app.py # Flask app code
+│ ├── requirements.txt
+│
+├── frontend/
+│ ├── Dockerfile
+│ └── index.html # Simple frontend HTML page
+│
+└── README.md
+
+
+
+---
+
+## Step 1: Create Docker Network
+
+```bash
+docker network create app-network
+
+
+docker build -t mysql-db:1.0.0 ./db
+docker build -t flask-backend:1.0.0 ./backend
+docker build -t frontend:1.0.0 ./frontend
+
+
+
+docker run -d --name db --network app-network mysql-db:1.0.0
+docker run -d --name backend --network app-network flask-backend:1.0.0
+docker run -d -p 80:80 --name frontend --network app-network frontend:1.0.0
+
+
+
