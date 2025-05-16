@@ -1,0 +1,8 @@
+FROM mysql:5.7
+
+
+ENV MYSQL_ROOT_PASSWORD=example
+ENV MYSQL_DATABASE=test_db
+
+
+EXPOSE 3306
