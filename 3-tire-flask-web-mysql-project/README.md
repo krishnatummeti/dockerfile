@@ -1,4 +1,4 @@
-# 3-Tier Docker Architecture Project on AWS EC2 (Free Tier)
+# 3-Tier Docker Architecture Project on AWS EC2
 
 This project demonstrates a simple 3-tier architecture using Docker containers running on a single AWS EC2 instance (t3.micro).  
 It consists of three components, each running in its own Docker container, connected via a custom Docker bridge network:
