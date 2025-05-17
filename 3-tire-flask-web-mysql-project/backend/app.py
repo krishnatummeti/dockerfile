@@ -6,19 +6,32 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def submit():
     if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        conn = mysql.connector.connect(
-            host='mysql',
-            user='root',
-            password='root',
-            database='appdb'
-        )
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO submissions (name, email) VALUES (%s, %s)", (name, email))
-        conn.commit()
-        cursor.close()
-        conn.close()
+        name = request.form.get('name')
+        email = request.form.get('email')
+
+        if not name or not email:
+            return "Error: Missing name or email field.", 400
+
+        try:
+            conn = mysql.connector.connect(
+                host='mysql',
+                user='root',
+                password='root',
+                database='appdb'
+            )
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO submissions (name, email) VALUES (%s, %s)",
+                (name, email)
+            )
+            conn.commit()
+            print(f"✅ Successfully inserted: {name}, {email}")
+        except Exception as e:
+            print(f"❌ Error inserting into database: {e}")
+            return "Internal Server Error: Could not save data.", 500
+        finally:
+            cursor.close()
+            conn.close()
 
         return render_template_string('''
         <!DOCTYPE html>
@@ -57,8 +70,16 @@ def submit():
         </html>
         ''', name=name)
     else:
-        # Show a simple message or redirect from GET
-        return "Flask backend is up. Use the HTML form to submit data."
+        return '''
+        <!DOCTYPE html>
+        <html>
+        <head><title>Flask App</title></head>
+        <body>
+            <h2>Flask backend is up.</h2>
+            <p>Use the HTML form from the frontend to submit data.</p>
+        </body>
+        </html>
+        '''
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
