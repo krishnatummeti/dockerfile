@@ -1,4 +1,4 @@
 FROM nginx
 RUN rm -rf /usr/share/nginx/html/index.html
-ADD index.htnl /usr/share/nginx/html/index.html
+ADD index.html /usr/share/nginx/html/index.html
 RUN chmod +r /usr/share/nginx/html/index.html
