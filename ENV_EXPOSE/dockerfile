@@ -1,5 +1,5 @@
 FROM almalinux:9
-ENV MY_NAME="John Doe" \
+ENV MY_NAME="T Krishna" \
     MY_DOG="Rex" \
     MY_CAT="fluffy" 
 RUN dnf install nginx -y

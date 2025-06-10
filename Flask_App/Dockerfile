@@ -2,7 +2,6 @@
 FROM python:3.9-slim
 
 
-
 RUN mkdir /app
 
 # Set the working directory inside the container
