@@ -1,4 +1,8 @@
+
 # Flask + Redis Counter App (Without Docker Compose)
+
+# Please fallow the steps
+
 
 # Step 1: Build the Flask app image
 docker build -t flask-app .
@@ -32,3 +36,6 @@ http://<your-ec2-public-ip>:5000
 
 # Expected Output (in browser):
 Hello, World! You have visited this page X times.
+
+
+
