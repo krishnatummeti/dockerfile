@@ -14,9 +14,9 @@ def submit():
 
         try:
             conn = mysql.connector.connect(
-                host='mysql',
+                host='my-mysql',
                 user='root',
-                password='root',
+                password='root@123',
                 database='appdb'
             )
             cursor = conn.cursor()
