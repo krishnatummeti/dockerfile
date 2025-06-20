@@ -1,13 +1,11 @@
-# 3-Tier Docker Architecture Project on VMware VM
+# 3-Tier Docker Architecture Project.
 
-This project demonstrates a 3-tier architecture using Docker containers running on a Linux VM (VMware).  
+This project demonstrates a 3-tier architecture using Docker containers running on a Linux.  
 It consists of three components, each in its own Docker container, connected via a custom Docker bridge network:
 
-- **Frontend:** Nginx web server serving static HTML form
-- **Backend:** Flask application processing form data
-- **Database:** MySQL storing submitted data
-
----
+Frontend: Nginx web server serving static HTML form
+Backend: Flask application processing form data
+Database: MySQL storing submitted data
 
 ## Project Overview
 
@@ -16,12 +14,9 @@ It consists of three components, each in its own Docker container, connected via
 - Backend runs Flask app on port 5000 and connects to MySQL internally using container name.
 - Form data submitted via frontend is sent to the backend and stored in MySQL.
 
-
-```bash
-
 ## Step 1: Update Frontend with your publc IP
 
-Edit the `frontend/index.html` file:
+Edit the file:  frontend/index.html 
 Change this line:
 
 EX:
