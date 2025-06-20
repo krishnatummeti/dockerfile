@@ -17,7 +17,7 @@ def submit():
                 host='my-mysql',
                 user='root',
                 password='root@123',
-                database='appdb'
+                database='Tech_Base_Hub_DB'
             )
             cursor = conn.cursor()
             cursor.execute(

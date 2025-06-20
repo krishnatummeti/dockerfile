@@ -28,9 +28,9 @@ docker build -t mysql-db:1.0.0 ./db
 docker build -t flask-backend:1.0.0 ./backend
 docker build -t frontend:1.0.0 ./frontend
 
-docker run -d --name db --network app-network mysql-db:1.0.0
-docker run -d --name backend --network app-network flask-backend:1.0.0
-docker run -d -p 80:80 --name frontend --network app-network frontend:1.0.0
+docker run -d --name my-mysql --network app-network mysql-db:1.0.0
+docker run -d --name my-backend --network app-network flask-backend:1.0.0
+docker run -d -p 80:80 --name my-frontend --network app-network frontend:1.0.0
 
 
 
