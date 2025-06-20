@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS Tech_Base_Hub_DB;
 USE Tech_Base_Hub_DB;
 
 CREATE TABLE IF NOT EXISTS submissions (
