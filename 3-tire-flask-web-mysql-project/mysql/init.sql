@@ -1,4 +1,4 @@
-USE appdb;
+USE Tech_Base_Hub_DB;
 
 CREATE TABLE IF NOT EXISTS submissions (
     id INT AUTO_INCREMENT PRIMARY KEY,
