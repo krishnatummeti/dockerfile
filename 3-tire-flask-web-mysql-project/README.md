@@ -1,36 +1,73 @@
-# 3-Tier Docker Architecture Project on AWS EC2
+# 3-Tier Docker Architecture Project on VMware VM
 
-This project demonstrates a simple 3-tier architecture using Docker containers running on a single AWS EC2 instance (t3.micro).  
-It consists of three components, each running in its own Docker container, connected via a custom Docker bridge network:
+This project demonstrates a 3-tier architecture using Docker containers running on a Linux VM (VMware).  
+It consists of three components, each in its own Docker container, connected via a custom Docker bridge network:
 
-- **Frontend:** Simple Nginx web server serving static HTML pages  
-- **Backend:** Flask application providing REST API for data processing  
-- **Database:** MySQL container storing data  
+- **Frontend:** Nginx web server serving static HTML form
+- **Backend:** Flask application processing form data
+- **Database:** MySQL storing submitted data
 
 ---
 
 ## Project Overview
 
-- All three containers share a single Docker bridge network (`app-network`) to communicate internally.  
-- The frontend container exposes port 80 to the EC2 instance for external access (web UI).  
-- The backend connects to the MySQL database container internally using container name as hostname.  
-- Data entered via the frontend is sent to the backend, which stores it in the MySQL database.
+- All containers communicate using a custom Docker network (`techbase-network`).
+- Frontend serves HTML form and exposes port 80 to the host.
+- Backend runs Flask app on port 5000 and connects to MySQL internally using container name.
+- Form data submitted via frontend is sent to the backend and stored in MySQL.
 
----
-
-## Step 1: Create Docker Network
 
 ```bash
-docker network create app-network
 
+## Step 1: Update Frontend with your publc IP
+
+Edit the `frontend/index.html` file:
+Change this line:
+
+EX:
+<form method="POST" action="http://192.168.71.130:5000/">
+# OR
+<form method="POST" action="http://your_IP:5000/">
+
+
+## Step 2: Create Docker Network
+
+docker network create techbase-network
+
+## Step 3: Build Docker Images
 
 docker build -t mysql:1.0.0 ./mysql
 docker build -t backend:1.0.0 ./backend
 docker build -t frontend:1.0.0 ./frontend
 
-docker run -d --name my-mysql --network app-network mysql:1.0.0
-docker run -d --name my-backend --network app-network backend:1.0.0
-docker run -d -p 80:80 --name my-frontend --network app-network frontend:1.0.0
+## Step 4: Run Containers
+docker run -d --name my-mysql --network techbase-network mysql:1.0.0
+docker run -d -p 5000:5000 --name my-backend --network techbase-network backend:1.0.0
+docker run -d -p 80:80 --name my-frontend --network techbase-network frontend:1.0.0
+
+## Access the Application
+
+- Visit `http://<your-vm-ip>` in a browser to open the frontend form.
+- Submitted data will be processed by Flask and saved to MySQL.
 
 
+# Verify from the Database
 
+docker exec -it my-mysql bash
+mysql -u root -proot@123
+show databases;
+use Tech_Base_Hub_DB;
+show tables;
+SELECT * FROM submissions;
+
+# Example Output
+
+mysql> SELECT * FROM submissions;
++----+-----------------+--------------------------+
+| id | name            | email                    |
++----+-----------------+--------------------------+
+|  1 | Tummeti Krishna | krishnatummeti@gmail.com |
++----+-----------------+--------------------------+
+1 row in set (0.00 sec)
+
+mysql>
