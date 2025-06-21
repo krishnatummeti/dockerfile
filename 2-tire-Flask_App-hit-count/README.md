@@ -14,7 +14,7 @@ docker images
 docker network create flask-app-network
 
 # Optional: Inspect the network details
-docker inspect flask-netwrok
+docker inspect flask-app-network
 
 # (Optional) You can pull the Redis image manually before running
 docker pull redis:alpine
